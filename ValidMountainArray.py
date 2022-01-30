@@ -1,18 +1,18 @@
 class Solution:
-    def validMountainArray(self, arr: List[int]) -> bool:
-        N = len(arr)
-
+    def validMountainArray(self, A) -> bool:
+        N = len(A)
         i = 0
-        while i < N - 1 and arr[i] < arr[i + 1]:
+
+        # walk up
+        while i + 1 < N and A[i] < A[i + 1]:
             i += 1
 
+        # peak can't be first or last
         if i == 0 or i == N - 1:
             return False
 
-        while i < N - 1 and arr[i] > arr[i + 1]:
+        # walk down
+        while i + 1 < N and A[i] > A[i + 1]:
             i += 1
 
-        if i < N - 1:
-            return False
-
-        return True
+        return i == N - 1
